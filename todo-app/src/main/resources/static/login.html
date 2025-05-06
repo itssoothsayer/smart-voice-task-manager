@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Voice Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .form-container {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .form-container.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .form-container:not(.hidden) {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+<div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center mb-6 text-indigo-600">AI Voice Task Manager</h1>
+
+    <!-- Login Form -->
+    <div id="loginFormContainer" class="form-container">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Login</h2>
+        <form id="loginForm">
+            <div class="mb-4">
+                <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="loginEmail" type="email" class="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+            <div class="mb-4">
+                <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="loginPassword" type="password" class="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <button type="button" id="showRegister" class="text-indigo-600 hover:underline text-sm">Need an account? Register</button>
+                <button type="submit" id="loginButton" class="bg-indigo-600 text-white rounded-lg px-4 py-2 hover:bg-indigo-700 disabled:opacity-50">Login</button>
+            </div>
+            <div id="loginError" class="text-red-500 text-sm hidden mt-2"></div>
+        </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerFormContainer" class="form-container hidden">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Register</h2>
+        <form id="registerForm">
+            <div class="mb-4">
+                <label for="registerEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="registerEmail" type="email" class="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+            <div class="mb-4">
+                <label for="registerPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="registerPassword" type="password" class="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" required minlength="6">
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <button type="button" id="showLogin" class="text-indigo-600 hover:underline text-sm">Already have an account? Login</button>
+                <button type="submit" id="registerButton" class="bg-green-600 text-white rounded-lg px-4 py-2 hover:bg-green-700 disabled:opacity-50">Register</button>
+            </div>
+            <div id="registerError" class="text-red-500 text-sm hidden mt-2"></div>
+        </form>
+    </div>
+</div>
+
+<footer class="absolute bottom-0 w-full bg-gray-800 text-white text-center py-3">
+    <p>© 2025 AI Voice Task Manager</p>
+</footer>
+
+<script type="module" src="auth.js"></script>
+</body>
+</html>
